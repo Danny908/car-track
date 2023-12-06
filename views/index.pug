@@ -1,0 +1,90 @@
+extends layout
+
+block content
+  h1=title
+  each vehicle in vehicles
+    form(class="vehicle-container" data-action="SAVE_CHANGES")
+      button(class="icon-btn floating-btn" title="DELETE VEHICLE" type="button" data-maker-id=vehicle.maker_id, data-action="DELETE_VEHICLE")
+        img(src="/images/icons/delete.svg" alt="DELETE VEHICLE")
+      div(class="vehicle-section")
+        //- Maker Section...
+        div(class="vehicle-sub-section")
+          input(
+              type="text"
+              name="maker_id"
+              value=vehicle.maker_id
+              readonly
+              class="hidden"
+            )
+          label(for=vehicle.maker class="required")="Brand Name"
+          input(
+            type="text"
+            required 
+            name="maker"
+            autocomplete="off"
+            id=vehicle.maker
+            value=vehicle.maker
+            placeholder="Add Brand Name..."
+            data-action="EDIT_VEHICLE"
+          )
+      fieldset(class="vehicle-section column-gap")
+        div(class="vehicle-sub-section row-gap scroll-y model-container")
+          legend(class="required sticky-top") Model List
+          if(vehicle.models.length > 0)
+            each vehicle_model in vehicle.models
+              //- Model Section...
+              div(class="vehicle-sub-section flex-row")
+                input(
+                  type="text" 
+                  name="model_id" 
+                  readonly class="hidden" 
+                  value=vehicle_model.model_id
+                )
+                input(
+                  type="text" 
+                  required 
+                  name="model" 
+                  autocomplete="off"
+                  value=vehicle_model.model 
+                  readonly
+                  placeholder="Add Model Name..."
+                  data-action="EDIT_MODEL"
+                )
+                button(class="icon-btn" title="DELETE MODEL" type="button" data-model-id=vehicle_model.model_id data-action="DELETE_MODEL")
+                  img(src="/images/icons/delete-circle.svg" alt="DELETE MODEL")
+          button(class="add-section sticky-bottom" title="ADD MODEL" type="button" data-action="ADD_MODEL")
+            img(src="/images/icons/add.svg" alt="Add Model")
+            p="ADD MODEL"
+        div(class="vehicle-sub-section column-gap fill-columns scroll-x flex-row specs-container hidden")
+          //- Specs Section...
+          div(class="card read-mode")
+            //- Specs Data Demo...
+            button(class="event-trigger" title="EDIT SPEC" type="button" data-spec-id="" data-action="EDIT_SPECS")
+            button(class="icon-btn floating-btn" title="DELETE SPEC" type="button" data-spec-id="" data-action="DELETE_SPEC")
+              img(src="/images/icons/delete-circle.svg" alt="DELETE MODEL")
+            label="Chassis Model"
+            input(type="text" class="hidden" name="spec_id")
+            input(type="text" readonly name="spec_chassis" value="B8")
+            label="Production From"
+            input(type="number" readonly name="spec_from" value="2009")
+            label="Production To"
+            input(type="number" readonly name="spec_to" value="2016")
+            label="Engine Model"
+            input(type="text" readonly name="spec_engine" value="V8 FSI")
+            label="Engine Power"
+            input(type="text" readonly name="spec_power" value="350bhp")
+            label="Engine Torque"
+            input(type="text" readonly name="spec_torque" value="440Nm")
+            label="Transmission Model"
+            input(type="text" readonly name="spec_transmission" value="6 Speed")
+            label="Transmission Type"
+            input(type="text" readonly name="spec_transmission_type" value="Manual")
+          button(class="add-section card" data-action="ADD_SPECS")
+            img(src="/images/icons/add.svg" alt="Add Specs")
+            p="ADD SPECS"
+      button(class="save-changes" type="submit")="SAVE CHANGES"
+  button(class="add-section" data-action="ADD_VEHICLE")
+    img(src="/images/icons/add.svg" alt="Add Vehicle")
+    p="ADD VEHICLE"
+
+  include ./dialog/specs.pug

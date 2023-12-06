@@ -1,0 +1,36 @@
+dialog
+  button(class="icon-btn floating-btn" title="CLOSE DIALOG" data-action="CLOSE_DIALOG")
+    img(src="/images/icons/delete-circle.svg" alt="CLOSE DIALOG")
+  h2="Add Vehicle Specs"
+  //- Add For Attribute to Inputs...
+  form(class="column-gap row-gap" data-action="INSERT_SPEC")
+    input(type="text" class="hidden" name="spec_id")
+    div(class="vehicle-sub-section")
+      label( class="required")="Chassis Model"
+      input(type="text" placeholder="Add Chassis..." required name="spec_chassis" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Production From"
+      input(type="text" placeholder="Add Production From..." required name="spec_from" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Production To"
+      input(type="text" placeholder="Add Production To..." required name="spec_to" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Engine Model"
+      input(type="text" placeholder="Add Engine..." required name="spec_engine" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Engine Power"
+      input(type="text" placeholder="Add Engine Power..." required name="spec_power" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Engine Torque"
+      input(type="text" placeholder="Add Engine Torque..." required name="spec_torque" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Transmission Model"
+      input(type="text" placeholder="Add Transmission..." required name="spec_transmission" autocomplete="off")
+    div(class="vehicle-sub-section")
+      label( class="required")="Transmission Type"
+      select(required name="spec_transmission_type")
+        option(disabled selected)="-"
+        option(value="automatic")="Automatic"
+        option(value="manual")="Manual"
+    button(class="save-changes" type="submit")="ADD SPECS"
+    
